@@ -1,0 +1,132 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+% \usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{comment}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\usepackage[
+backend=biber,
+style=ieee,
+sorting=ynt
+]{biblatex}
+\addbibresource{export.bib}
+\begin{document}
+
+\title{Literature Review for ML/DL and how it relates to Embedded Systems\\}
+
+\author{
+\IEEEauthorblockN{Seán Ó Fithcheallaigh (B00830189)}
+\IEEEauthorblockA{\textit{Department of Computing} \\
+\textit{Ulster University}\\
+Belfast, N. Ireland \\
+o\_fithcheallaigh-s@ulster.ac.uk}
+}
+
+\maketitle
+
+\begin{abstract}
+TBD
+\end{abstract}
+
+\begin{IEEEkeywords}
+Machine Learning, Deep Learning, Embedded Systems, The Edge
+\end{IEEEkeywords}
+
+\section{Introduction}
+\subsection{The Problem}
+There are over two million people in the UK who are living with sight loss; where sight loss includes: people who are registered blind or partially sighted; people whose vision is better than the levels that qualify for registration; people who are awaiting or having treatment such as injections, laser treatment or surgery that may improve their sight; Correctly prescribed glasses or contact lenses could improve the sight of people who have sight loss \cite{rnib}. Experts also predict that the number of people suffering from sight loss will double to over four million by 2050 \cite{Pezzullo}.
+
+Of the two million people with sight loss, the leading causes of sight loss include (with the approximate number of people affected) \cite{rnib}:
+\begin{itemize}
+    \item Age-related macular degeneration (AMD) (488,000 people)
+    \item Cataract (394,000 people)
+    \item Diabetic retinopathy (97,000 people)
+    \item Glaucoma (151,000 people)
+    \item Uncorrected refractive error (809,000 people)
+    \item Other eye problems (150,000 people)
+\end{itemize}
+
+
+How sight loss impacts those effects can vary, depending on personal circumstances. Some factors which can be influential in a person's experience with sight loss can be: they receive support and receive it at the right time, a person's age, the presence of other disabilities, and the severity of the sight loss. However, most people in the UK agree that those with visual impairments are not treated the same as those without visual impairments, according to a key finding in [1].
+
+People with visual impairments are less likely to go into an environment with which they are not familiar. As a result, visual impairments can have a negative impact on their health and well-being. Obstacle detection and warning can improve the mobility and safety of visually impaired people, particularly in unfamiliar environments; as one RNIB research participant said, "If there were more things in shops to help people with sight loss [...] to help us get around" [1]. However, if we look around our world, we can see that transport systems are not built with the visually impaired in mind [3]. This fact is one factor likely to be a factor in four out of every ten blind people who are only able to make some of the journeys they either need to or wanted to \cite{rnib}.
+
+Visually impaired people face many issues when navigating their journey, such as understanding how to reach their destination. Typically, the route to a destination will stay the same - streets remain in the same place, and road crossings tend not to move. However, another issue they face is random obstacles placed in their path. These are things that a visually impaired person could have no way to know is there. Of course, items such as the white cane some blind people use can assist with this kind of issue. However, not everyone may want to use a cane (potentially because of the signal that sends: I am different, I have an impairment), and potentially because, if registered as blind, many people still have some level of vision and do not wish to give up a level of independence completely. 
+
+A need exists to develop systems that can assist visually impaired people in navigating their surroundings. In any proposed navigation system for the visually impaired, obstacles must first be detected and localised. Then, navigation information must be communicated to the person, allowing them to avoid obstacles. Using various modalities such as voice, tactile feedback, and vibration could facilitate the achievement of this goal.
+ 
+This project proposes using machine learning (ML) methods within an embedded system to develop a solution that can detect obstacles in the path of a visually impaired user navigating an indoor environment. 
+ 
+Several tasks will need to be completed to determine the system's feasibility. The first step will be the investigation of various sensor modalities in order to determine the most appropriate sensor or combination of sensors. Then a dataset will be gathered covering a range of obstacle detection and avoidance scenarios. This dataset will then be used to train, test, and validate several Deep Learning (DL) and ML models to understand which is best at detecting and localising obstacles. Development work will then be done to allow this model to be implemented on a constrained device, and the performance of the final model will be assessed against critical parameters. 
+
+This paper will detail this work by covering the main steps listed above. 
+
+\section{Technical Review}
+\subsection{Introduction}
+This section of the report will present a background discussion on the technical aspects of this project. 
+
+As has been discussed, the goal is to design and build an object detection system which researchers can implement on a constrained device. This detection system will operate at what is called "the edge". This section of the report will start with a discussion of what is meant by the edge, covering the advantages and disadvantages of working at the edge and the hardware and software considerations required. 
+
+In recent years, the term "edge" has been coming up more and more in discussions about the future directions of machine learning ML, and is often discussed in connection with the Internet of Things (IoT). When discussing machine learning at the edge, one may hear terms such as "edge AI" or "edge ML". Other standard terms would be "embedded machine learning", "embedded ML", "embedded AI", and a popular phrase: "tiny ML". All these terms are interchangeable, and while there may be some differences depending on the context, a person can use any of these terms to discuss the same topic.
+
+Embedded is quite a common term in the field of electronic engineering. An embedded device, or an embedded system, is a computer that controls the electronics of many of today's modern devices. We can find embedded systems in everything from mobile phones to modern cars to satellites which orbit the Earth. These embedded systems can run software that will control the system's functions and ability.
+Embedded systems are in more places than one may imagine, or it may be more accurate to say that there are more embedded chips in a single device than one may imagine. Globally, In 2020, more than 28 billion microcontrollers were shipped, and the trend is predicted to grow, with a focus on automation and AI devices \cite{ucmarket}. Given how common these devices are, it is pretty apparent that researching how best to transfer ML models to these systems is an important step.
+
+The term 'edge' may seem slightly unusual. So how does edge relate to ML? 
+
+When discussing the internet, computers, or IT systems, most people will have an image of their PC at home or the computer they use at work. However, there are more devices connected to the internet than computers. As of 2021, research shows there were 12.2 billion active IoT connections [2]. These IoT devices cover almost any aspect of our lives that one cares to think about, everything from smartwatches; intelligent kitchen appliances; baby monitors connected to the internet, allowing parents to check in from anywhere in the world; shipping containers; and industrial sensors used to monitor the health of machinery. The list goes on and on.
+
+How are all these billions of devices connecting to networks and communication? They have connected to servers, and these are the servers which are often referred to as the "cloud".
+These devices are connected to a network; they take readings from their sensors and send that information to a location where it can be stored and processed. From this perspective, these devices sit at the 'edge' of the network, hence the name.
+
+
+
+
+
+
+\begin{itemize}
+    \item \textbf{Human Approach}
+    \begin{itemize}
+        \item Systems that think like humans
+        \item Systems that act like humans
+    \end{itemize}
+    \item \textbf{Ideal Approach}
+    \begin{itemize}
+        \item Systems that think rationally
+        \item Systems that act rationally
+    \end{itemize}
+\end{itemize}
+
+
+
+
+
+\subsection{Machine Learning}
+
+
+\section{Algorithms}
+\subsubsection{Supervised Learning}
+We will focus here in supervised learning, since labelled data will be used in the project. Specifically, we will focus on classification models, since we will be trying to classify if something is an obstacle or not.
+
+Since we are aiming to classify if something is an obstacle or not, we are looking at two-class classification algorithms. Some of the algorithms we will investigate here are \cite{azure}:
+
+
+\section{Literature Review}
+
+
+
+
+% \section*{Acknowledgment}
+
+
+%\section*{References}
+\printbibliography
+\vspace{12pt}
+
+\end{document}
