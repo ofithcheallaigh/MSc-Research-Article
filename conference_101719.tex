@@ -6,6 +6,7 @@
 \usepackage{comment}
 \usepackage{algorithmic}
 \usepackage{graphicx}
+\graphicspath{ {./images/} }
 \usepackage{textcomp}
 \usepackage{xcolor}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
@@ -18,7 +19,7 @@ sorting=ynt
 \addbibresource{export.bib}
 \begin{document}
 
-\title{Literature Review for ML/DL and how it relates to Embedded Systems\\}
+\title{MSc Research Report\\}
 
 \author{
 \IEEEauthorblockN{Seán Ó Fithcheallaigh (B00830189)}
@@ -73,6 +74,7 @@ This section of the report will present a background discussion on the technical
 
 As has been discussed, the goal is to design and build an object detection system which researchers can implement on a constrained device. This detection system will operate at what is called "the edge". This section of the report will start with a discussion of what is meant by the edge, covering the advantages and disadvantages of working at the edge and the hardware and software considerations required. 
 
+\subsection{The Edge}
 In recent years, the term "edge" has been coming up more and more in discussions about the future directions of machine learning ML, and is often discussed in connection with the Internet of Things (IoT). When discussing machine learning at the edge, one may hear terms such as "edge AI" or "edge ML". Other standard terms would be "embedded machine learning", "embedded ML", "embedded AI", and a popular phrase: "tiny ML". All these terms are interchangeable, and while there may be some differences depending on the context, a person can use any of these terms to discuss the same topic.
 
 Embedded is quite a common term in the field of electronic engineering. An embedded device, or an embedded system, is a computer that controls the electronics of many of today's modern devices. We can find embedded systems in everything from mobile phones to modern cars to satellites which orbit the Earth. These embedded systems can run software that will control the system's functions and ability.
@@ -80,29 +82,39 @@ Embedded systems are in more places than one may imagine, or it may be more accu
 
 The term 'edge' may seem slightly unusual. So how does edge relate to ML? 
 
-When discussing the internet, computers, or IT systems, most people will have an image of their PC at home or the computer they use at work. However, there are more devices connected to the internet than computers. As of 2021, research shows there were 12.2 billion active IoT connections [2]. These IoT devices cover almost any aspect of our lives that one cares to think about, everything from smartwatches; intelligent kitchen appliances; baby monitors connected to the internet, allowing parents to check in from anywhere in the world; shipping containers; and industrial sensors used to monitor the health of machinery. The list goes on and on.
+When discussing the internet, computers, or IT systems, most people will have an image of their PC at home or the computer they use at work. However, there are more devices connected to the internet than computers. As of 2021, research shows there were 12.2 billion active IoT connections \cite{ucmarket}. These IoT devices cover almost any aspect of our lives that one cares to think about, everything from smartwatches; intelligent kitchen appliances; baby monitors connected to the internet, allowing parents to check in from anywhere in the world; shipping containers; and industrial sensors used to monitor the health of machinery. The list goes on and on.
 
 How are all these billions of devices connecting to networks and communication? They have connected to servers, and these are the servers which are often referred to as the "cloud".
 These devices are connected to a network; they take readings from their sensors and send that information to a location where it can be stored and processed. From this perspective, these devices sit at the 'edge' of the network, hence the name.
 
+\subsubsection{Edge AI}
+For a long time, IoT devices have been seen as ways to collect data via onboard sensors. They would collect the data and transmit it back to a hub for processing. However, this approach is costly in several ways. First, it can cost a lot of money to transmit large amounts of data, due mainly to the connectivity and storage costs; there is also the issue that transmitting data is a highly power-hungry task for any battery-powered IoT device. Second, it is expensive in human time, too, because people will need to evaluate the data and process it, potentially making some decisions based on that data analysis.
+
+Sending information back to a central location to be processed and then returning the result can take time, referred to as latency. The time required for this may only be a matter of seconds, which is acceptable for some applications, but would be too long for other applications where near-instant feedback is needed. An example of a time-critical system could be a system on an autonomous vehicle needing to react to traffic lights. The vehicle cannot wait a few seconds to determine if it is approaching a red light and needs to stop. 
+
+\subsubsection{Hardware Consideration}
+Edge AI is built on constrained devices, such as microcontrollers (MCU). Constrained devices, such as microcontrollers, are the primary platform for edge AI applications. The limited processing power, available memory and power consumption are the main factors constraining these devices. 
+
+The image in Fig. \ref{fig:ucblock} shows a block diagram for an edge AI device:    
+\begin{figure}[h]
+\includegraphics[width=7cm, height=5cm]{images/system_block_diagram.png}
+\centering
+\caption{Block Diagram for a Constrained Device}
+\label{fig:ucblock}
+\end{figure}
+
+Fig \ref{fig:ucblock} shows that the processor is the centre of the whole system, with the processor being the element that runs applications and runs the algorithm for an AI application. Depending on the system, there may also be co-processors or accelerators. An accelerator is a bit of hardware designed to carry out a specific task. For example, one typical accelerator would be a floating-point unit (FPU), which will be added to a system to carry out floating-point arithmetic as quickly as possible. Other accelerators which could be common in edge AI applications would be digital signal processing (DSP) blocks and linear algebra blocks \cite{edgeAI}. 
+
+There are many edge AI devices that have been designed with a specific use case, or area of use, in mind. For example, there is the Carol \cite{carol}, which is a platform developed by Google for AI applications in a production environment. The System on Module (SoM) device is a fully integrated system for accelerated ML applications (including CPU, GPU, Edge TPU, Wi-Fi, and Bluetooth). The Jetson Nano from NVIDIA \cite{jetson}, which is an AI computer for makers, learners, and developers \cite{jetson1}. As discussed in \cite{jetson1}, the Jetson Nano allows for the use of libraries and APIs for TensorRT and cuDNN, which can be used for deep learning applications that require higher performance, CUDA for GPU accelerated applications, NVIDIA Container Runtime for containerised GPU accelerated applications, as well as APIs for sensor development or working with OpenCV. This, along with NVIDEA's other AI-focused development kits, is aimed at prototyping, before being put into production.
+
+The systems mentioned so far would fall into the mid-to-high-end systems. However, lower-end systems are still capable of carrying out AI applications. One example of a lower-end system is the Beaglebone AI \cite{beagle}. This system is built on Linux, and based around the Texas Instruments (TI) AM5729, with a TI C66x floating point DSP, with TI embedded vision engines (EVE) \cite{tuomo}. Then there is the Arduino Nano 33 BLE Sense which is a small development board which is AI-enabled. The Arduino Nano 33 contains a number of onboard sensors, such as a 9-axis inertial sensor, humidity sensor, microphone and proximity sensor. The Arduino board also has GPIO pins which can allow extra sensors to be added if needed or required. The Arduino development kit allows for EML applications to be run where models created using TensorFlow Lite can be uploaded to the board via the Arduino IDE \cite{arduino}.
+
+Another type of hardware configuration would be the field programmable gate array (FPGA). An FPGA is an IC which allows the user to configure the hardware to meet the requirements of the project. Using FPGAs allows the developer to build a processor that is specific and tailored to running ML models and so on. The flexibility that FPGAs allow means they are an excellent platform for developing AI accelerators \cite{tuomo}. Intel has a range of FPGAs which allow real-time, low-latency, and low-power deep learning inference. A number of devices such as the Intel Cyclone.
 
 
 
-
-
-\begin{itemize}
-    \item \textbf{Human Approach}
-    \begin{itemize}
-        \item Systems that think like humans
-        \item Systems that act like humans
-    \end{itemize}
-    \item \textbf{Ideal Approach}
-    \begin{itemize}
-        \item Systems that think rationally
-        \item Systems that act rationally
-    \end{itemize}
-\end{itemize}
-
+\subsubsection{Software}
+As previously discussed, when building edge AI applications on an MCU, one must give the availability of memory due consideration. Unfortunately, available memory is problematic when implementing any machine learning algorithm or neural network on an MCU because the weights and biases required for a model to function and any data points can take up large amounts of memory.
 
 
 
