@@ -5,6 +5,8 @@
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{comment}
 \usepackage{algorithmic}
+\usepackage{tabularx}
+\usepackage{multirow}
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
 \usepackage{textcomp}
@@ -109,27 +111,77 @@ There are many edge AI devices that have been designed with a specific use case,
 
 The systems mentioned so far would fall into the mid-to-high-end systems. However, lower-end systems are still capable of carrying out AI applications. One example of a lower-end system is the Beaglebone AI \cite{beagle}. This system is built on Linux, and based around the Texas Instruments (TI) AM5729, with a TI C66x floating point DSP, with TI embedded vision engines (EVE) \cite{tuomo}. Then there is the Arduino Nano 33 BLE Sense which is a small development board which is AI-enabled. The Arduino Nano 33 contains a number of onboard sensors, such as a 9-axis inertial sensor, humidity sensor, microphone and proximity sensor. The Arduino board also has GPIO pins which can allow extra sensors to be added if needed or required. The Arduino development kit allows for EML applications to be run where models created using TensorFlow Lite can be uploaded to the board via the Arduino IDE \cite{arduino}.
 
-Another type of hardware configuration would be the field programmable gate array (FPGA). An FPGA is an IC which allows the user to configure the hardware to meet the requirements of the project. Using FPGAs allows the developer to build a processor that is specific and tailored to running ML models and so on. The flexibility that FPGAs allow means they are an excellent platform for developing AI accelerators \cite{tuomo}. Intel has a range of FPGAs which allow real-time, low-latency, and low-power deep learning inference. A number of devices such as the Intel Cyclone.
+Another type of hardware configuration would be the field programmable gate array (FPGA). An FPGA is an IC which allows the user to configure the hardware to meet the requirements of the project. Using FPGAs allows the developer to build a processor that is specific and tailored to running ML models and so on. The flexibility that FPGAs allow means they are an excellent platform for developing AI accelerators \cite{tuomo}. Intel has a range of FPGAs which allow real-time, low-latency, and low-power deep learning inference. A number of devices such as the Intel Cyclone. Other manufacturers are producing AI-focused FPGAs, such as Qualcomm, which has, among other systems, the Snapdragon, which is a System on Chip (SoC) which contains a CPU and GPU and is very power efficient \cite{qualcomm}. 
+
+\subsubsection{Software and Frameworks}
+As previously discussed, when building edge AI applications on an MCU, one must give the availability of memory due consideration. Unfortunately, available memory is problematic when implementing any machine learning algorithm or neural network on an MCU because the weights and biases required for a model to function and any data points can take up large amounts of memory. Software libraries and frameworks have been developed to help reduce things like memory requirements.
+
+The main tools or frameworks used in deep learning would be TensorFlow and its associated Keras API and PyTorch. Others like Theano, Caffe, and Microsoft CNTK are also available. TensorFlow, developed by Google Brian, is a powerful open-source library aimed at deep neural networks. These tools are typically optimised to run on GPUs and other specialised hardware. The reason for this is to accelerate the training processes. Once a model is trained, using that model to make inferences is less computationally expensive, which is essential for dealing with edge devices. However, it is important to note that why the inference is less computationally expensive, the MCU does not have a free ride - a reasonable amount of memory and processing power is still required to carry out the inference. To try and reduce the requirements on the front end, frameworks such as TensorFlow and PyTorch have implemented model compression techniques with little to no effect on computational accuracy \cite{tuomo}. 
+
+While TensorFlow (with TensorFlow Lite) and PyTorch have been mentioned here, TensorFlow has been the main focus, because while PyTorch has PyTorch Mobile, it is aimed at mobile devices which run on either Android or iOS, whereas TensorFlow Lite can be used on embedded system \cite{tuomo} \cite{tfl1}.
+
+\subsection{Tensor Flow Lite}
+TensorFlow Lite (TLF) is a set of tools that have been designed and built to allow on-board machine learning. It has been designed to help developers run models on embedded systems, as well as on mobile devices [10].
+
+Some of the key features of TensorFlow Lite (TFL) include:
+
+\begin{itemize}
+    \item Optimisation
+    \item Multi-platform
+    \item Multi-language options
+    \item High performance
+\end{itemize}
+
+Process optimisation is extreme;y important when developing embedded machine learning (EML) systems. TFL deals with optimisation by dealing with a number of key constraints which are common to embedded systems: latency, privacy, connectivity, size, and power consumption \cite{jetson1}. The reduced latency comes from the fact that there is no information going to the server to be processed, and then back to the device. TFL removes a lot of privacy issues which may traditionally have been present in cloud-based ML tasks because no data will actually leave the device. Connectivity issues are side-stepped because the device does not need to connect to a network. Some systems may send information back to a cloud-based server, but this would become a non-critical task, in terms of timing. TFL can also reduce the size of any associated files, meaning they are more suitable for embedded applications. Power consumption is reduced through efficiencies in the interface, as well as the lack of network connection, since, typically, sending information tends to be a large drain on power.
+
+On the topic of multi-platform, TFL can be used to develop models that will work on Android and iOS devices, as well as on MCU and embedded Linux systems. In terms of languages, TFL has support for Python, Objective-C, C++, Java and Swift. The ability to use multiple languages is a great advantage, but the ability to optimize the models is essential to the success of TFL. This will be discussed in the following section.
+
+\subsubsection{Optimisation} Since optimisation is key, this section will explore the topic more. Various optimisation techniques can be applied to models to allow efficient operation with the limited computational power and limited memory available on a constrained device. As previously discussed, some optimisation techniques allow for the use of accelerated inference \cite{tfl2}.
+
+Models should be optimised for a number of reasons. One of the main reasons would be size reduction. There is no single method used for reducing the model size, but no matter the process, there are a number of advantages in doing this:
+
+\begin{itemize}
+    \item \textbf{Smaller storage size}: A smaller size model will take up less memory on the end device. If we take the Arduino Nano as our target device, this MCU does not come with a lot of onboard memory, so reducing the model size is critical for deployment.
+    \item \textbf{Reduced memory usage}: Using a smaller model will result in less RAM being used when the model is run. This will allow other more memory to be available for other elements of the application to use. This will typically result in better performance overall.
+    \item \textbf{Reduced download size}: A smaller model will need less time to download onto the end device. This is a benefit when a system might have a small window of time to receive a newly trained model.
+\end{itemize}
+
+Another reason is \textbf{latency reduction}. In the context of EML, latency can be defined as the amount of time taken for the system to process a piece of data and make a decision based on that data. Optimisation can reduce the amount of computation needed to make this decision (or, to put it another way, reduce latency). Lower latency will also have the benefit of reducing power consumption.
+
+Then we have \textbf{accelerators}. One consequence of model optimisation is that it can impact the model's accuracy, and this should be kept in mind during development. TFL offers tools such as Edge TPU, which can run inference extremely fast when using models which have been correctly optimised. Edge TPU is offered by Google, and is a purpose-built ASIC which has been designed specifically to run AI on edge devices, allows for high-quality machine learning inferencing at the edge and is based around the Carol development environment discussed above \cite{google2}.
+
+As discussed, optimisation has the potential to modify the accuracy of the model, and any developer must keep this in mind during the development process. The potential inaccuracies cannot be predicted, so a method of dealing with them cannot be developed and included as part of the TFL suite of tools.
+
+Depending on what works best for a given application, TFL offers a number of optimisation paths: quantisation, pruning, and clustering. The quantisation approach works by reducing the precision of the numbers used to represent the model parameters \cite{tfl2}. By default, these are set to 32-bit floating point numbers. Reducing the precision of the numbers or parameters of the model means that less memory is required, this in turn means an overall smaller model, which will result in faster computation.
+
+From \cite{tfl1}, we get the following quantisation techniques, and the results:
+
+\begin{tabular}{||c c c c c||} 
+ \hline
+ Col1 & Col2 & Col3 & Col4 & Col4 \\ [1.0ex] 
+ \hline\hline
+ 1 & 6 & 87837 & 787 & e\\ 
+ \hline
+ 2 & 7 & 78 & 5415 & d \\
+ \hline
+ 3 & 545 & 778 & 7507 & 552\\
+ \hline
+ 4 & 545 & 18744 & 7560 & g1 \\
+ \hline
+ 5 & 88 & 788 & 6344 & 3\\ [1ex] 
+ \hline
+\end{tabular}
 
 
+Next is pruning. Pruning is an approach which removes parameters within the model which will have only a minor impact on the prediction. A pruned model will take up the same size of memory and will have the same latency, but it can be compressed more efficiently.
 
-\subsubsection{Software}
-As previously discussed, when building edge AI applications on an MCU, one must give the availability of memory due consideration. Unfortunately, available memory is problematic when implementing any machine learning algorithm or neural network on an MCU because the weights and biases required for a model to function and any data points can take up large amounts of memory.
-
-
-
-
-\subsection{Machine Learning}
-
-
-\section{Algorithms}
-\subsubsection{Supervised Learning}
-We will focus here in supervised learning, since labelled data will be used in the project. Specifically, we will focus on classification models, since we will be trying to classify if something is an obstacle or not.
-
-Since we are aiming to classify if something is an obstacle or not, we are looking at two-class classification algorithms. Some of the algorithms we will investigate here are \cite{azure}:
-
+Then finally there is clustering. Clustering works by grouping the weights of each layer into a predefined number of clusters, which allows for the centroid values for the weights belonging to each cluster. This means the number of unique weights is reduced, which also reduces the complexity.
 
 \section{Literature Review}
+\subsection{Introduction}
+This section of the report will present a review of previous research carried out in the area of embedded machine learning.
+
+\subsection{Literature Review}
 
 
 
