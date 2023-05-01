@@ -38,7 +38,7 @@ TBD
 \end{abstract}
 
 \begin{IEEEkeywords}
-Machine Learning, Deep Learning, Embedded Systems, The Edge
+Machine Learning, Deep Learning, Embedded Systems, The Edge, Neural Networks, Arduino
 \end{IEEEkeywords}
 
 \section{Introduction}
@@ -182,6 +182,17 @@ Then finally there is clustering. Clustering works by grouping the weights of ea
 This section of the report will present a review of previous research carried out in the area of embedded machine learning.
 
 \subsection{Literature Review}
+Many articles have been written on the topic of obstacle detection, some of these, such as \cite{obstacle1}, use mobile devices such as smartphones and tablets with in-built cameras, which run algorithms to detect the presence of obstacles. While smartphones and tablets are not the proposed constrained device used in this project, the paper offers interesting insights into the use of a small portable device which is not intrusive. The model presented in this work uses a number of sensors for detecting obstacles. The sensors listed include the onboard camera, proximity sensor, accelerometer, and gyroscope. The researchers in this work use the Canny Edge Detection algorithm \cite{canny}. This algorithm extracts useful information from vision objects and reduces the amount of data this is processed. As such, it is a common algorithm found in the area of computer vision as well as edge detection.
+
+Other research, such as \cite{sattiraju2018machine} offers insights into how machine learning can be used to carry out Real-Time Ranging and Localisation (RTRL) and discusses a few different approaches to labelling data which are interesting and offer a useful background to the proposed work. They use two different labelling methods – one is a simple multi-class labelling system, and the other is a grid labelling system. This work also discussed the performance of several classification models which was very informative – the authors showed that tree-based models along with Stochastic Gradient Boost performed better than linear models. The paper also discussed which of the labelling methods they investigated showed the best performance. As such, this paper contains a lot of useful information related to the proposed work.
+The proposed work’s goal is to access the feasibility of a DL/ML model running on what is a constrained device. 
+
+The work presented in \cite{merenda} offers a discussion on topics like the future of Machine Learning at the edge, as well as a discussion on Machine Learning/Deep Learning algorithms, it also presents a discussion on how Machine Learning can be brought to the edge, discussing architectures and hardware, and wireless standards for Artificial Intelligence-enabled devices. As such, the work in \cite{merenda} provides a wide-ranging and extremely useful background to the topic of Machine Learning and Deep Learning on constrained devices. 
+
+The work presented in \cite{quinn} used a thermal imaging camera and provides some useful insights into data collection as well as a discussion on the system architecture. The work then goes on to discuss the use of CNNs and highlighted some of the problems encountered when training on the AlexNet network – specifically lighting, which may be an issue for the work proposed here, depending on sensor type, and as such, is something to keep in mind.
+
+
+Finally, a slightly older paper is presented in \cite{lane}. While this paper is older, it provides a very useful entry point into machine learning at the edge. The work discusses some of the early stages of so-called embeddedML development, looking at work done using smartphones and how non-CPU processors, such as DSPs can play an important role in reducing deep networks to allow them to be used on a constrained device. The paper also discusses methods for overcoming the constraints of an embedded system, which includes a compression model which allows deep neural networks to fit and operate on embedded systems. 
 
 
 
