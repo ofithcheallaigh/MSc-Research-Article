@@ -42,7 +42,7 @@ Machine Learning, Deep Learning, Embedded Systems, The Edge, Neural Networks, Ar
 \end{IEEEkeywords}
 
 \section{Introduction}
-This project is related to the testing an development of a obstacle avoidance and navigation system for people with sight difficulties. The initial part of this section will give background information on why systems like this are needed, and will then move into a more detailed exploration of the project.
+This project is related to the testing and development of an obstacle avoidance and navigation system for people with sight difficulties. The initial part of this section will give background information on why systems like this are needed, and will then move into a more detailed exploration of the project.
 \subsection{The lives of people dealing with sight loss}
 There are over two million people in the UK who are living with sight loss; where sight loss includes: people who are registered blind or partially sighted; people whose vision is better than the levels that qualify for registration; people who are awaiting or having treatment such as injections, laser treatment or surgery that may improve their sight; Correctly prescribed glasses or contact lenses could improve the sight of people who have sight loss \cite{rnib}. Experts also predict that the number of people suffering from sight loss will double to over four million by 2050 \cite{Pezzullo}.
 
@@ -63,7 +63,7 @@ People with visual impairments are less likely to go into an environment with wh
 
 Visually impaired people face many issues when navigating their journey, such as understanding how to reach their destination. Typically, the route to a destination will stay the same - streets remain in the same place, and road crossings tend not to move. However, another issue they face is random obstacles placed in their path. These are things that a visually impaired person could have no way to know is there. Of course, items such as the white cane some blind people use can assist with this kind of issue. However, not everyone may want to use a cane (potentially because of the signal that sends: I am different, I have an impairment), and potentially because, if registered as blind, many people still have some level of vision and do not wish to give up a level of independence completely. 
 
-\subsection{Exploration of the problem}
+\subsection{The Problem}
 A need exists to develop systems that can assist visually impaired people in navigating their surroundings. In any proposed navigation system for the visually impaired, obstacles must first be detected and localised. Then, navigation information must be communicated to the person, allowing them to avoid obstacles. Using various modalities such as voice, tactile feedback, and vibration could facilitate the achievement of this goal.
  
 This project proposes using machine learning (ML) methods within an embedded system to develop a solution that can detect obstacles in the path of a visually impaired user navigating an indoor environment. 
@@ -195,6 +195,17 @@ The work presented in \cite{quinn} used a thermal imaging camera and provides so
 
 Finally, a slightly older paper is presented in \cite{lane}. While this paper is older, it provides a very useful entry point into machine learning at the edge. The work discusses some of the early stages of so-called embeddedML development, looking at work done using smartphones and how non-CPU processors, such as DSPs can play an important role in reducing deep networks to allow them to be used on a constrained device. The paper also discusses methods for overcoming the constraints of an embedded system, which includes a compression model which allows deep neural networks to fit and operate on embedded systems. 
 
+\section{System Development}
+This section of the report will present information on the technical work carried out on the research project. It will start with a discussion on the data collection process, followed by a discussion on the initial analysis of that data using classification techniques from the machine learning toolbox. From there a discussion on the development of a neural network will be presented before moving on to examine the deployment of the network onto the constrained device.
+
+\subsection{Data Collection}
+A list of potential sensors was examined against a list of criteria, such as cost, accuracy, size, power consumption and so on. Each potential sensor (from LiDAR to ultrasonic sensors to cameras) was scored. This scoring showed that the best sensor, given the constraints of the project, was the ultrasonic sensor. This was teamed with the Arduino Nano 33 BLE sense development kit. The Arduino development kit offers a small, affordable system with its own IDE. The ultrasonic sensor's output can be read using the Arduino's general-purpose input/output (GPIO) pins. It was decided to use two ultrasonic sensors, to allow data collection on two channels. This means that the data collection system will be made of an Arduino microcontroller, two ultrasonic sensors, the connecting wires as well a breadboard, which was used to hold the ultrasonic sensors. The whole system is connected to a PC via a USB cable. 
+
+Data were collected for a number of obstacles, namely a closed door, a display stand, a storage box, and a large bin, with each obstacle placed in the centre of a hallway. These obstacles were chosen because they are reasonably large, and as such, should return strong distance measurements. 
+
+In front of the obstacle was an imaged 3-foot by 3-foot grid. This grid was broken into 1-foot by 1-foot grids. This gives 9 grids in total, labelled 1 to 9. The data collection system will be placed in each of those 9 grids, pointing directly forward. When the measurement starts, it will be sent to a serial port monitor, specifically Tera Term. Tera Term allows the user to set up a file in which the transmitted data will be saved in comma-separate values (CSV) files. As well as the obstacles, data will be collected from the hallway when there is no object in place. As well as the gathered distance measurements information was gathered on the grid location and if an object was present or not. This information was output via a program writtn for the Arduino. An esample of the dataset headers can be seen in the table below
+
+\subsection{Initial Analysis}
 
 
 
