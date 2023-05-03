@@ -199,7 +199,13 @@ Finally, a slightly older paper is presented in \cite{lane}. While this paper is
 This section of the report will present information on the technical work carried out on the research project. It will start with a discussion on the data collection process, followed by a discussion on the initial analysis of that data using classification techniques from the machine learning toolbox. From there a discussion on the development of a neural network will be presented before moving on to examine the deployment of the network onto the constrained device.
 
 \subsection{Data Collection}
-A list of potential sensors was examined against a list of criteria, such as cost, accuracy, size, power consumption and so on. Each potential sensor (from LiDAR to ultrasonic sensors to cameras) was scored. This scoring showed that the best sensor, given the constraints of the project, was the ultrasonic sensor. This was teamed with the Arduino Nano 33 BLE sense development kit. The Arduino development kit offers a small, affordable system with its own IDE. The ultrasonic sensor's output can be read using the Arduino's general-purpose input/output (GPIO) pins. It was decided to use two ultrasonic sensors, to allow data collection on two channels. This means that the data collection system will be made of an Arduino microcontroller, two ultrasonic sensors, the connecting wires as well a breadboard, which was used to hold the ultrasonic sensors. The whole system is connected to a PC via a USB cable. 
+A list of potential sensors was examined against a list of criteria, such as cost, accuracy, size, power consumption and so on. Each potential sensor (from LiDAR to ultrasonic sensors to cameras) was scored. This scoring showed that the best sensor, given the constraints of the project, was the ultrasonic sensor. This was teamed with the Arduino Nano 33 BLE sense development kit. The Arduino development kit offers a small, affordable system with its own IDE. The ultrasonic sensor's output can be read using the Arduino's general-purpose input/output (GPIO) pins. It was decided to use two ultrasonic sensors, to allow data collection on two channels. The image in Fig. \ref{fig:collection1} shows a block diagram for an edge AI device:    
+\begin{figure}[h]
+\includegraphics[width=9cm, height=6cm]{images/data_collection_block.png}
+\centering
+\caption{Block Diagram for a Constrained Device}
+\label{fig:collection1}
+\end{figure}
 
 Data were collected for a number of obstacles, namely a closed door, a display stand, a storage box, and a large bin, with each obstacle placed in the centre of a hallway. These obstacles were chosen because they are reasonably large, and as such, should return strong distance measurements. 
 
