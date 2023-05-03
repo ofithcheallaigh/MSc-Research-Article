@@ -203,7 +203,26 @@ A list of potential sensors was examined against a list of criteria, such as cos
 
 Data were collected for a number of obstacles, namely a closed door, a display stand, a storage box, and a large bin, with each obstacle placed in the centre of a hallway. These obstacles were chosen because they are reasonably large, and as such, should return strong distance measurements. 
 
-In front of the obstacle was an imaged 3-foot by 3-foot grid. This grid was broken into 1-foot by 1-foot grids. This gives 9 grids in total, labelled 1 to 9. The data collection system will be placed in each of those 9 grids, pointing directly forward. When the measurement starts, it will be sent to a serial port monitor, specifically Tera Term. Tera Term allows the user to set up a file in which the transmitted data will be saved in comma-separate values (CSV) files. As well as the obstacles, data will be collected from the hallway when there is no object in place. As well as the gathered distance measurements information was gathered on the grid location and if an object was present or not. This information was output via a program writtn for the Arduino. An esample of the dataset headers can be seen in the table below
+In front of the obstacle was an imaged 3-foot by 3-foot grid. This grid was broken into 1-foot by 1-foot grids. This gives 9 grids in total, labelled 1 to 9. The data collection system will be placed in each of those 9 grids, pointing directly forward. When the measurement starts, it will be sent to a serial port monitor, specifically Tera Term. Tera Term allows the user to set up a file in which the transmitted data will be saved in comma-separate values (CSV) files. As well as the obstacles, data will be collected from the hallway when there is no object in place. As well as the gathered distance measurements information was gathered on the grid location and if an object was present or not. This information was output via a program written for the Arduino. An example of the dataset headers can be seen in Table \ref{table:1}:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c c c c||} 
+ \hline
+ Channel1 & Channel2 & Object & Grid \\ [0.5ex] 
+ \hline\hline
+ 2243 & 1392 & Yes & 1 \\ 
+ \hline
+ 2399 & 1476 & Yes & 1 \\
+ \hline
+ 2313 & 1245 & Yes & 1 \\
+ \hline
+ 2257 & 1388 & Yes & 1 \\ [1ex] 
+ \hline
+\end{tabular}
+\caption{Example of Ultrasonic Dataset}
+\label{table:1}
+\end{table}
 
 \subsection{Initial Analysis}
 
