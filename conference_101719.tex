@@ -199,9 +199,11 @@ Finally, a slightly older paper is presented in \cite{lane}. While this paper is
 This section of the report will present information on the technical work carried out on the research project. It will start with a discussion on the data collection process, followed by a discussion on the initial analysis of that data using classification techniques from the machine learning toolbox. From there a discussion on the development of a neural network will be presented before moving on to examine the deployment of the network onto the constrained device.
 
 \subsection{Data Collection}
+This section of the report will give a brief overview of the data collection process.
+
 A list of potential sensors was examined against a list of criteria, such as cost, accuracy, size, power consumption and so on. Each potential sensor (from LiDAR to ultrasonic sensors to cameras) was scored. This scoring showed that the best sensor, given the constraints of the project, was the ultrasonic sensor. This was teamed with the Arduino Nano 33 BLE sense development kit. The Arduino development kit offers a small, affordable system with its own IDE. The ultrasonic sensor's output can be read using the Arduino's general-purpose input/output (GPIO) pins. It was decided to use two ultrasonic sensors, to allow data collection on two channels. The image in Fig. \ref{fig:collection1} shows a block diagram for an edge AI device:    
 \begin{figure}[h]
-\includegraphics[width=9cm, height=6cm]{images/data_collection_block.png}
+\includegraphics[width=8.5cm, height=6cm]{images/data_collection_block.png}
 \centering
 \caption{Block Diagram for a Constrained Device}
 \label{fig:collection1}
@@ -229,6 +231,11 @@ In front of the obstacle was an imaged 3-foot by 3-foot grid. This grid was brok
 \caption{Example of Ultrasonic Dataset}
 \label{table:1}
 \end{table}
+
+\subsection{Initial Analysis}
+\subsubsection{Introduction}
+This section of the report will give a brief overview of the initial data analysis steps taken and the results generated from this analysis. This analysis will be carried out with a focus on what is referred to as "object analysis" and "grid analysis". The purpose of object analysis is to understand how well the machine learning techniques are at determining if an object is present or not in the data. Grid analysis is trying to determine how well machine learning or deep learning techniques can be used to 
+
 
 \subsection{Initial Analysis}
 
