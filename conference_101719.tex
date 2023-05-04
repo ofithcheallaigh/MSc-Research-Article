@@ -213,7 +213,7 @@ Data were collected for a number of obstacles, namely a closed door, a display s
 
 In front of the obstacle was an imaged 3-foot by 3-foot grid. This grid was broken into 1-foot by 1-foot grids. This gives 9 grids in total, labelled 1 to 9. The data collection system will be placed in each of those 9 grids, pointing directly forward. When the measurement starts, it will be sent to a serial port monitor, specifically Tera Term. Tera Term allows the user to set up a file in which the transmitted data will be saved in comma-separate values (CSV) files. As well as the obstacles, data will be collected from the hallway when there is no object in place. As well as the gathered distance measurements information was gathered on the grid location and if an object was present or not. This information was output via a program written for the Arduino. An example of the dataset headers can be seen in Table \ref{table:1}:
 
-\begin{table}[h!]
+\begin{table}[ht]
 \centering
 \begin{tabular}{||c c c c||} 
  \hline
@@ -234,8 +234,39 @@ In front of the obstacle was an imaged 3-foot by 3-foot grid. This grid was brok
 
 \subsection{Initial Analysis}
 \subsubsection{Introduction}
-This section of the report will give a brief overview of the initial data analysis steps taken and the results generated from this analysis. This analysis will be carried out with a focus on what is referred to as "object analysis" and "grid analysis". The purpose of object analysis is to understand how well the machine learning techniques are at determining if an object is present or not in the data. Grid analysis is trying to determine how well machine learning or deep learning techniques can be used to 
+This section of the report will give a brief overview of the initial data analysis steps taken and the results generated from this analysis. This analysis will be carried out with a focus on what is referred to as "object analysis" and "grid analysis". The purpose of object analysis is to understand how well the machine learning techniques are at determining if an object is present or not in the data. Grid analysis is trying to determine how well machine learning or deep learning techniques can be used to determine how accurate the model is at determining which grid the data was gathered from. This information would be useful for navigation (i.e. should the person move to the left or right to avoid an object).
 
+\subsection{Initial Model Analysis}
+To understand how well a system may be able to detect an object or not, an initial test was carried out on the datasets. This initial examination would be carried out by using two datasets at a time: one dataset would be a dataset for an object, the other dataset would be data gathered for no object. 
+
+The data was processed through a number of classification models, specifically:
+\begin{itemize}
+    \item Logistic Regression
+    \item Decision Tree
+    \item K-nearest neighbour
+    \item Linear discriminant analysis
+    \item Gaussian Naive Bayes
+\end{itemize}
+
+The order of the datasets tested is shown in Table \ref{table:2}:
+\begin{table}[ht]
+\centering
+\begin{tabular}{||c c||} 
+ \hline
+ Dataset 1 & Dataset 2  \\ [0.5ex] 
+ \hline\hline
+ Display Stand & Clear Hallway  \\ 
+ \hline
+ Closed Door & Clear Hallway \\
+ \hline
+ Storage Box & Clear Hallway \\
+ \hline
+ Large Bin & Clear Hallway \\ [1ex] 
+ \hline
+\end{tabular}
+\caption{Datasets test for initial analysis}
+\label{table:2}
+\end{table}
 
 \subsection{Initial Analysis}
 
