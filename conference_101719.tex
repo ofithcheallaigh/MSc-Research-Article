@@ -319,7 +319,12 @@ With the balanced dataset in place, the grid analysis could be carried out. This
 \label{fig:initial_analysis_gridsearch}
 \end{figure}
 
-We can see from this analysis that once again, the \texttt{Decision Tree Classifier} and the \texttt{K-Nearest Neighbour} algorithms produce 100 percent accuracy, with the \texttt{LDA} algorithm producing some of the lowest accuracy figures. 
+We can see from this analysis that once again, the Decision Tree Classifier and the K-Nearest Neighbour algorithms produce 100 per cent accuracy. \textcolor{red}{The fact that these models are consistently producing perfect results will require further investigation}. The LDA algorithm producing some of the lowest accuracy figures. 
+
+This analysis shows that it is possible to detect the presence of an object as well as localise that object to a grid location. The next step will be to build neural networks that can be deployed onto a constrained device, allowing the system to be tested live.
+
+\subsection{Neural Networks}
+
 
 \subsection{System Algorithm}
 One of the constraints of an embedded device, as previously mentioned, is power, another is latency. When designing a potential navigation system for people with sight difficulties, these constraints need to be kept in mind. Continually processing data at the edge will be power intensive. For this reason, it is proposed that the navigation system is split into two sections. The first would be continually processing data to determine \textit{if} an object is present. this processing would continue as long as the answer is no. When an object is detected, the system would switch to the second stage of processing, where it will determine \textit{where} the object is, thus allowing the user to navigate around it. This very simple system is shown in the following flowchart:
@@ -330,6 +335,8 @@ One of the constraints of an embedded device, as previously mentioned, is power,
 \caption{Embedded Algorithm Flowchart}
 \label{fig:embedded_algo_flowchart}
 \end{figure}
+
+
 
 
 % \section*{Acknowledgment}
