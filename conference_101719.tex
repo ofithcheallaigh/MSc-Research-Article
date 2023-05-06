@@ -310,7 +310,27 @@ The balanced dataset is illustrated in Table \ref{table:3}:
 \label{table:3}
 \end{table}
 
-With the balanced dataset is place
+With the balanced dataset in place, the grid analysis could be carried out. This time the response was the grid number, unlike the binary search analysis, where the presence of an object or not was the response. The data was processed through the same models listed above and the results of this analysis can be seen in Fig. \ref{fig:initial_analysis_gridsearch}.
+
+\begin{figure}[h]
+\includegraphics[width=8cm, height=3cm]{images/initial_analysis_gridsearch.png}
+\centering
+\caption{Results for the Initial Binary Search}
+\label{fig:initial_analysis_gridsearch}
+\end{figure}
+
+We can see from this analysis that once again, the \texttt{Decision Tree Classifier} and the \texttt{K-Nearest Neighbour} algorithms produce 100 percent accuracy, with the \texttt{LDA} algorithm producing some of the lowest accuracy figures. 
+
+\subsection{System Algorithm}
+One of the constraints of an embedded device, as previously mentioned, is power, another is latency. When designing a potential navigation system for people with sight difficulties, these constraints need to be kept in mind. Continually processing data at the edge will be power intensive. For this reason, it is proposed that the navigation system is split into two sections. The first would be continually processing data to determine \textit{if} an object is present. this processing would continue as long as the answer is no. When an object is detected, the system would switch to the second stage of processing, where it will determine \textit{where} the object is, thus allowing the user to navigate around it. This very simple system is shown in the following flowchart:
+
+\begin{figure}[h]
+\includegraphics[width=8cm, height=8cm]{images/embedded_algo_flowchart.png}
+\centering
+\caption{Embedded Algorithm Flowchart}
+\label{fig:embedded_algo_flowchart}
+\end{figure}
+
 
 % \section*{Acknowledgment}
 
