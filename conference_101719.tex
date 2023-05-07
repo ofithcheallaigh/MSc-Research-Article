@@ -2,6 +2,7 @@
 \IEEEoverridecommandlockouts
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 % \usepackage{cite}
+\pagenumbering{arabic}
 \usepackage{xcolor}
 \usepackage{listings}
 \usepackage{amsmath,amssymb,amsfonts}
@@ -21,6 +22,7 @@ style=ieee,
 sorting=ynt
 ]{biblatex}
 \addbibresource{export.bib}
+
 \begin{document}
 
 \title{MSc Research Report\\}
@@ -34,6 +36,9 @@ o\_fithcheallaigh-s@ulster.ac.uk}
 }
 
 \maketitle
+% Next two lines will put page numbers in
+\thispagestyle{plain}
+\pagestyle{plain}
 
 \begin{abstract}
 TBD
@@ -319,17 +324,45 @@ With the balanced dataset in place, the grid analysis could be carried out. This
 \label{fig:initial_analysis_gridsearch}
 \end{figure}
 
-We can see from this analysis that once again, the Decision Tree Classifier and the K-Nearest Neighbour algorithms produce 100 per cent accuracy. \textcolor{red}{The fact that these models are consistently producing perfect results will require further investigation}. The LDA algorithm producing some of the lowest accuracy figures. 
+We can see from this analysis that once again, the Decision Tree Classifier and the K-Nearest Neighbour algorithms produce 100 per cent accuracy.  The LDA algorithm produces some of the lowest accuracy figures. However, the majority of the results are over 90 per cent. As with the binary analysis, it can be seen that the results for the train and test datasets are the same for each object. This will require further investigation.
 
-This analysis shows that it is possible to detect the presence of an object as well as localise that object to a grid location. The next step will be to build neural networks that can be deployed onto a constrained device, allowing the system to be tested live.
+\subsection{Using Unseen Data}
+One possible explanation for the identical accuracy of the training and testing data could be that the data used for both sets are very similar. This is because the measurement system and the object being detected are static throughout the data collection process. 
+
+To test this idea, and to look for more representative results, the algorithms will be trained on datasets from three objects, and tested on data from one object, which it has not "seen". This analysis was done for both the binary analysis and the grid analysis. The results can be seen in Fig \ref{fig:new_data_results},
+
+\begin{figure}[h]
+\includegraphics[width=8cm, height=7cm]{images/new_data_results.png}
+\centering
+\caption{Results for the Initial Binary Search}
+\label{fig:new_data_results}
+\end{figure}
+
+Fig \ref{fig:new_data_results} shows that the training accuracy results for the decision tree classifier and the K-nearest neighbours algorithms are still at 100 per cent, however, there is a drop in the accuracy figures when the algorithms are presented with "new" data (i.e. data it has not been trained on).
+
+This analysis indicates that the standard classification models, using default settings, will likely struggle to make accurate classification predictions when presented with data gathered from unseen objects. This indicates two possible paths forward. One would be to gathered data for more objects, which can be used to train the models with. This would be quite a labour-intensive task, and one can never cover all objects. Another path is to investigate the ability of neural networks to train a model. 
 
 \subsection{Neural Networks}
+Using neural networks offers a number of advantages. Neural networks can be used to learn more complex relationships, they are very well suited to classification tasks, and since they are good at learning the underlying relationships in the data, they are good with data that is not cleaned and prepared. A number of frameworks are available when working with neural networks. This work will use the Keras framework.
+
+Working with neural networks requires more work due to the need to decide on the number of layers, the number of neurons, the activation function and so on. During the neural network investigation, a number of parameters were investigated, such as using the Model and Sequential class as well as the rmsprop, Adam and SGD optimisers. The loss parameter investigated was the Sparse categorical cross-entropy, as well as the mean squared error loss. The number of epochs was varied as well at the batch size. Some investigation of the learning rate was carried out to understand the impact that can have on the accuracy. 
+
+This investigation found that, for the grid analysis, the following parameters shown in Fig \ref{fig:nn_settings}, produced the best results
+
+\begin{figure}[h]
+\includegraphics[width=8cm, height=1cm]{images/nn_settings.png}
+\centering
+\caption{Optimal Setting for Neural Network}
+\label{fig:nn_settings}
+\end{figure}
+
+This network has 3 Dense layers, with 
 
 
 \subsection{System Algorithm}
 One of the constraints of an embedded device, as previously mentioned, is power, another is latency. When designing a potential navigation system for people with sight difficulties, these constraints need to be kept in mind. Continually processing data at the edge will be power intensive. For this reason, it is proposed that the navigation system is split into two sections. The first would be continually processing data to determine \textit{if} an object is present. this processing would continue as long as the answer is no. When an object is detected, the system would switch to the second stage of processing, where it will determine \textit{where} the object is, thus allowing the user to navigate around it. This very simple system is shown in the following flowchart:
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \includegraphics[width=8cm, height=8cm]{images/embedded_algo_flowchart.png}
 \centering
 \caption{Embedded Algorithm Flowchart}
