@@ -14,14 +14,19 @@
 \graphicspath{ {./images/} }
 \usepackage{textcomp}
 \usepackage{xcolor}
+\usepackage{hyperref}
+
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
-\usepackage[
-backend=biber,
-style=ieee,
-sorting=ynt
-]{biblatex}
-\addbibresource{export.bib}
+
+% \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+% \usepackage[
+% backend=biber,
+% style=ieee,
+% sorting=ynt
+% ]{biblatex}
+% \addbibresource{export.bib}
 
 \begin{document}
 
@@ -51,9 +56,9 @@ Machine Learning, Deep Learning, Embedded Systems, The Edge, Neural Networks, Ar
 \section{Introduction}
 This project is related to the testing and development of an obstacle avoidance and navigation system for people with sight difficulties. The initial part of this section will give background information on why systems like this are needed, and will then move into a more detailed exploration of the project.
 \subsection{The lives of people dealing with sight loss}
-There are over two million people in the UK who are living with sight loss; where sight loss includes: people who are registered blind or partially sighted; people whose vision is better than the levels that qualify for registration; people who are awaiting or having treatment such as injections, laser treatment or surgery that may improve their sight; Correctly prescribed glasses or contact lenses could improve the sight of people who have sight loss \cite{rnib}. Experts also predict that the number of people suffering from sight loss will double to over four million by 2050 \cite{Pezzullo}.
+There are over two million people in the UK who are living with sight loss; where sight loss includes: people who are registered blind or partially sighted; people whose vision is better than the levels that qualify for registration; people who are awaiting or having treatment such as injections, laser treatment or surgery that may improve their sight; Correctly prescribed glasses or contact lenses could improve the sight of people who have sight loss \cite{b1}. Experts also predict that the number of people suffering from sight loss will double to over four million by 2050 \cite{b2}.
 
-Of the two million people with sight loss, the leading causes of sight loss include (with the approximate number of people affected) \cite{rnib}:
+Of the two million people with sight loss, the leading causes of sight loss include (with the approximate number of people affected) \cite{b1}:
 \begin{itemize}
     \item Age-related macular degeneration (AMD) (488,000 people)
     \item Cataract (394,000 people)
@@ -64,9 +69,9 @@ Of the two million people with sight loss, the leading causes of sight loss incl
 \end{itemize}
 
 
-How sight loss impacts those effects can vary, depending on personal circumstances. Some factors which can be influential in a person's experience with sight loss can be: they receive support and receive it at the right time, a person's age, the presence of other disabilities, and the severity of the sight loss. However, most people in the UK agree that those with visual impairments are not treated the same as those without visual impairments, according to a key finding in [1].
+How sight loss impacts those effects can vary, depending on personal circumstances. Some factors which can be influential in a person's experience with sight loss can be: they receive support and receive it at the right time, a person's age, the presence of other disabilities, and the severity of the sight loss. However, most people in the UK agree that those with visual impairments are not treated the same as those without visual impairments, according to a key finding in \cite{b1}.
 
-People with visual impairments are less likely to go into an environment with which they are not familiar. As a result, visual impairments can have a negative impact on their health and well-being. Obstacle detection and warning can improve the mobility and safety of visually impaired people, particularly in unfamiliar environments; as one RNIB research participant said, "If there were more things in shops to help people with sight loss [...] to help us get around" [1]. However, if we look around our world, we can see that transport systems are not built with the visually impaired in mind [3]. This fact is one factor likely to be a factor in four out of every ten blind people who are only able to make some of the journeys they either need to or wanted to \cite{rnib}.
+People with visual impairments are less likely to go into an environment with which they are not familiar. As a result, visual impairments can have a negative impact on their health and well-being. Obstacle detection and warning can improve the mobility and safety of visually impaired people, particularly in unfamiliar environments; as one RNIB research participant said, "If there were more things in shops to help people with sight loss [...] to help us get around" \cite{b1} \cite{b2}. However, if we look around our world, we can see that transport systems are not built with the visually impaired in mind [3]. This fact is one factor likely to be a factor in four out of every ten blind people who are only able to make some of the journeys they either need to or wanted to \cite{b1}.
 
 Visually impaired people face many issues when navigating their journey, such as understanding how to reach their destination. Typically, the route to a destination will stay the same - streets remain in the same place, and road crossings tend not to move. However, another issue they face is random obstacles placed in their path. These are things that a visually impaired person could have no way to know is there. Of course, items such as the white cane some blind people use can assist with this kind of issue. However, not everyone may want to use a cane (potentially because of the signal that sends: I am different, I have an impairment), and potentially because, if registered as blind, many people still have some level of vision and do not wish to give up a level of independence completely. 
 
@@ -88,11 +93,11 @@ As has been discussed, the goal is to design and build an object detection syste
 In recent years, the term "edge" has been coming up more and more in discussions about the future directions of machine learning ML, and is often discussed in connection with the Internet of Things (IoT). When discussing machine learning at the edge, one may hear terms such as "edge AI" or "edge ML". Other standard terms would be "embedded machine learning", "embedded ML", "embedded AI", and a popular phrase: "tiny ML". All these terms are interchangeable, and while there may be some differences depending on the context, a person can use any of these terms to discuss the same topic.
 
 Embedded is quite a common term in the field of electronic engineering. An embedded device, or an embedded system, is a computer that controls the electronics of many of today's modern devices. We can find embedded systems in everything from mobile phones to modern cars to satellites which orbit the Earth. These embedded systems can run software that will control the system's functions and ability.
-Embedded systems are in more places than one may imagine, or it may be more accurate to say that there are more embedded chips in a single device than one may imagine. Globally, In 2020, more than 28 billion microcontrollers were shipped, and the trend is predicted to grow, with a focus on automation and AI devices \cite{ucmarket}. Given how common these devices are, it is pretty apparent that researching how best to transfer ML models to these systems is an important step.
+Embedded systems are in more places than one may imagine, or it may be more accurate to say that there are more embedded chips in a single device than one may imagine. Globally, In 2020, more than 28 billion microcontrollers were shipped, and the trend is predicted to grow, with a focus on automation and AI devices \cite{b3}. Given how common these devices are, it is pretty apparent that researching how best to transfer ML models to these systems is an important step.
 
-The term 'edge' may seem slightly unusual. So how does edge relate to ML? 
+The term 'edge' may seem slightly unusual. So how does Edge relate to ML? 
 
-When discussing the internet, computers, or IT systems, most people will have an image of their PC at home or the computer they use at work. However, there are more devices connected to the internet than computers. As of 2021, research shows there were 12.2 billion active IoT connections \cite{ucmarket}. These IoT devices cover almost any aspect of our lives that one cares to think about, everything from smartwatches; intelligent kitchen appliances; baby monitors connected to the internet, allowing parents to check in from anywhere in the world; shipping containers; and industrial sensors used to monitor the health of machinery. The list goes on and on.
+When discussing the internet, computers, or IT systems, most people will have an image of their PC at home or the computer they use at work. However, there are more devices connected to the internet than computers. As of 2021, research shows there were 12.2 billion active IoT connections \cite{b3}. These IoT devices cover almost any aspect of our lives that one cares to think about, everything from smartwatches; intelligent kitchen appliances; baby monitors connected to the internet, allowing parents to check in from anywhere in the world; shipping containers; and industrial sensors used to monitor the health of machinery. The list goes on and on.
 
 How are all these billions of devices connecting to networks and communication? They have connected to servers, and these are the servers which are often referred to as the "cloud".
 These devices are connected to a network; they take readings from their sensors and send that information to a location where it can be stored and processed. From this perspective, these devices sit at the 'edge' of the network, hence the name.
@@ -106,29 +111,28 @@ Sending information back to a central location to be processed and then returnin
 Edge AI is built on constrained devices, such as microcontrollers (MCU). Constrained devices, such as microcontrollers, are the primary platform for edge AI applications. The limited processing power, available memory and power consumption are the main factors constraining these devices. 
 
 The image in Fig. \ref{fig:ucblock} shows a block diagram for an edge AI device:    
-\begin{figure}[h]
+\begin{figure}[ht]
 \includegraphics[width=8cm, height=6cm]{images/edge_device_block_diagram.png}
 \centering
 \caption{Block Diagram for a Constrained Device}
 \label{fig:ucblock}
 \end{figure}
 
-Fig \ref{fig:ucblock} shows that the processor is the centre of the whole system, with the processor being the element that runs applications and runs the algorithm for an AI application. Depending on the system, there may also be co-processors or accelerators. An accelerator is a bit of hardware designed to carry out a specific task. For example, one typical accelerator would be a floating-point unit (FPU), which will be added to a system to carry out floating-point arithmetic as quickly as possible. Other accelerators which could be common in edge AI applications would be digital signal processing (DSP) blocks and linear algebra blocks \cite{edgeAI}. 
+Fig \ref{fig:ucblock} shows that the processor is the centre of the whole system, with the processor being the element that runs applications and runs the algorithm for an AI application. Depending on the system, there may also be co-processors or accelerators. An accelerator is a bit of hardware designed to carry out a specific task. For example, one typical accelerator would be a floating-point unit (FPU), which will be added to a system to carry out floating-point arithmetic as quickly as possible. Other accelerators which could be common in edge AI applications would be digital signal processing (DSP) blocks and linear algebra blocks \cite{b4}. 
 
-There are many edge AI devices that have been designed with a specific use case, or area of use, in mind. For example, there is the Carol \cite{carol}, which is a platform developed by Google for AI applications in a production environment. The System on Module (SoM) device is a fully integrated system for accelerated ML applications (including CPU, GPU, Edge TPU, Wi-Fi, and Bluetooth). The Jetson Nano from NVIDIA \cite{jetson}, which is an AI computer for makers, learners, and developers \cite{jetson1}. As discussed in \cite{jetson1}, the Jetson Nano allows for the use of libraries and APIs for TensorRT and cuDNN, which can be used for deep learning applications that require higher performance, CUDA for GPU accelerated applications, NVIDIA Container Runtime for containerised GPU accelerated applications, as well as APIs for sensor development or working with OpenCV. This, along with NVIDEA's other AI-focused development kits, is aimed at prototyping, before being put into production.
+There are many edge AI devices that have been designed with a specific use case, or area of use, in mind. For example, there is the Carol \cite{b5}, which is a platform developed by Google for AI applications in a production environment. The System on Module (SoM) device is a fully integrated system for accelerated ML applications (including CPU, GPU, Edge TPU, Wi-Fi, and Bluetooth). The Jetson Nano from NVIDIA \cite{b6}, which is an AI computer for makers, learners, and developers \cite{b7}. As discussed in \cite{b7}, the Jetson Nano allows for the use of libraries and APIs for TensorRT and cuDNN, which can be used for deep learning applications that require higher performance, CUDA for GPU accelerated applications, NVIDIA Container Runtime for containerised GPU accelerated applications, as well as APIs for sensor development or working with OpenCV. This, along with NVIDEA's other AI-focused development kits, is aimed at prototyping, before being put into production.
 
-The systems mentioned so far would fall into the mid-to-high-end systems. However, lower-end systems are still capable of carrying out AI applications. One example of a lower-end system is the Beaglebone AI \cite{beagle}. This system is built on Linux, and based around the Texas Instruments (TI) AM5729, with a TI C66x floating point DSP, with TI embedded vision engines (EVE) \cite{tuomo}. Then there is the Arduino Nano 33 BLE Sense which is a small development board which is AI-enabled. The Arduino Nano 33 contains a number of onboard sensors, such as a 9-axis inertial sensor, humidity sensor, microphone and proximity sensor. The Arduino board also has GPIO pins which can allow extra sensors to be added if needed or required. The Arduino development kit allows for EML applications to be run where models created using TensorFlow Lite can be uploaded to the board via the Arduino IDE \cite{arduino}.
+The systems mentioned so far would fall into the mid-to-high-end systems. However, lower-end systems are still capable of carrying out AI applications. One example of a lower-end system is the Beaglebone AI \cite{b8}. This system is built on Linux, and based around the Texas Instruments (TI) AM5729, with a TI C66x floating point DSP, with TI embedded vision engines (EVE) \cite{b9}. Then there is the Arduino Nano 33 BLE Sense which is a small development board which is AI-enabled. The Arduino Nano 33 contains a number of onboard sensors, such as a 9-axis inertial sensor, humidity sensor, microphone and proximity sensor. The Arduino board also has GPIO pins which can allow extra sensors to be added if needed or required. The Arduino development kit allows for EML applications to be run where models created using TensorFlow Lite can be uploaded to the board via the Arduino IDE \cite{b10}.
 
-Another type of hardware configuration would be the field programmable gate array (FPGA). An FPGA is an IC which allows the user to configure the hardware to meet the requirements of the project. Using FPGAs allows the developer to build a processor that is specific and tailored to running ML models and so on. The flexibility that FPGAs allow means they are an excellent platform for developing AI accelerators \cite{tuomo}. Intel has a range of FPGAs which allow real-time, low-latency, and low-power deep learning inference. A number of devices such as the Intel Cyclone. Other manufacturers are producing AI-focused FPGAs, such as Qualcomm, which has, among other systems, the Snapdragon, which is a System on Chip (SoC) which contains a CPU and GPU and is very power efficient \cite{qualcomm}. 
+Another type of hardware configuration would be the field programmable gate array (FPGA). An FPGA is an IC which allows the user to configure the hardware to meet the requirements of the project. Using FPGAs allows the developer to build a processor that is specific and tailored to running ML models and so on. The flexibility that FPGAs allow means they are an excellent platform for developing AI accelerators \cite{b9}. Intel has a range of FPGAs which allow real-time, low-latency, and low-power deep learning inference. A number of devices such as the Intel Cyclone. Other manufacturers are producing AI-focused FPGAs, such as Qualcomm, which has, among other systems, the Snapdragon, which is a System on Chip (SoC) which contains a CPU and GPU and is very power efficient \cite{b11}. 
 
 \subsubsection{Software and Frameworks}
 As previously discussed, when building edge AI applications on an MCU, one must give the availability of memory due consideration. Unfortunately, available memory is problematic when implementing any machine learning algorithm or neural network on an MCU because the weights and biases required for a model to function and any data points can take up large amounts of memory. Software libraries and frameworks have been developed to help reduce things like memory requirements.
 
-The main tools or frameworks used in deep learning would be TensorFlow and its associated Keras API and PyTorch. Others like Theano, Caffe, and Microsoft CNTK are also available. TensorFlow, developed by Google Brian, is a powerful open-source library aimed at deep neural networks. These tools are typically optimised to run on GPUs and other specialised hardware. The reason for this is to accelerate the training processes. Once a model is trained, using that model to make inferences is less computationally expensive, which is essential for dealing with edge devices. However, it is important to note that why the inference is less computationally expensive, the MCU does not have a free ride - a reasonable amount of memory and processing power is still required to carry out the inference. To try and reduce the requirements on the front end, frameworks such as TensorFlow and PyTorch have implemented model compression techniques with little to no effect on computational accuracy \cite{tuomo}. 
+The main tools or frameworks used in deep learning would be TensorFlow and its associated Keras API and PyTorch. Others like Theano, Caffe, and Microsoft CNTK are also available. TensorFlow, developed by Google Brian, is a powerful open-source library aimed at deep neural networks. These tools are typically optimised to run on GPUs and other specialised hardware. The reason for this is to accelerate the training processes. Once a model is trained, using that model to make inferences is less computationally expensive, which is essential for dealing with edge devices. However, it is important to note that why the inference is less computationally expensive, the MCU does not have a free ride - a reasonable amount of memory and processing power is still required to carry out the inference. To try and reduce the requirements on the front end, frameworks such as TensorFlow and PyTorch have implemented model compression techniques with little to no effect on computational accuracy \cite{b9}. 
 
-While TensorFlow (with TensorFlow Lite) and PyTorch have been mentioned here, TensorFlow has been the main focus, because while PyTorch has PyTorch Mobile, it is aimed at mobile devices which run on either Android or iOS, whereas TensorFlow Lite can be used on embedded system \cite{tuomo} \cite{tfl1}.
+While TensorFlow (with TensorFlow Lite) and PyTorch have been mentioned here, TensorFlow has been the main focus, because while PyTorch has PyTorch Mobile, it is aimed at mobile devices which run on either Android or iOS, whereas TensorFlow Lite can be used on embedded system \cite{b9} \cite{b12}.
 
-\subsection{Tensor Flow Lite}
 TensorFlow Lite (TLF) is a set of tools that have been designed and built to allow on-board machine learning. It has been designed to help developers run models on embedded systems, as well as on mobile devices [10].
 
 Some of the key features of TensorFlow Lite (TFL) include:
@@ -140,11 +144,11 @@ Some of the key features of TensorFlow Lite (TFL) include:
     \item High performance
 \end{itemize}
 
-Process optimisation is extreme;y important when developing embedded machine learning (EML) systems. TFL deals with optimisation by dealing with a number of key constraints which are common to embedded systems: latency, privacy, connectivity, size, and power consumption \cite{jetson1}. The reduced latency comes from the fact that there is no information going to the server to be processed, and then back to the device. TFL removes a lot of privacy issues which may traditionally have been present in cloud-based ML tasks because no data will actually leave the device. Connectivity issues are side-stepped because the device does not need to connect to a network. Some systems may send information back to a cloud-based server, but this would become a non-critical task, in terms of timing. TFL can also reduce the size of any associated files, meaning they are more suitable for embedded applications. Power consumption is reduced through efficiencies in the interface, as well as the lack of network connection, since, typically, sending information tends to be a large drain on power.
+Process optimisation is extreme;y important when developing embedded machine learning (EML) systems. TFL deals with optimisation by dealing with a number of key constraints which are common to embedded systems: latency, privacy, connectivity, size, and power consumption \cite{b7}. The reduced latency comes from the fact that there is no information going to the server to be processed, and then back to the device. TFL removes a lot of privacy issues which may traditionally have been present in cloud-based ML tasks because no data will actually leave the device. Connectivity issues are side-stepped because the device does not need to connect to a network. Some systems may send information back to a cloud-based server, but this would become a non-critical task, in terms of timing. TFL can also reduce the size of any associated files, meaning they are more suitable for embedded applications. Power consumption is reduced through efficiencies in the interface, as well as the lack of network connection, since, typically, sending information tends to be a large drain on power.
 
 On the topic of multi-platform, TFL can be used to develop models that will work on Android and iOS devices, as well as on MCU and embedded Linux systems. In terms of languages, TFL has support for Python, Objective-C, C++, Java and Swift. The ability to use multiple languages is a great advantage, but the ability to optimize the models is essential to the success of TFL. This will be discussed in the following section.
 
-\subsubsection{Optimisation} Since optimisation is key, this section will explore the topic more. Various optimisation techniques can be applied to models to allow efficient operation with the limited computational power and limited memory available on a constrained device. As previously discussed, some optimisation techniques allow for the use of accelerated inference \cite{tfl2}.
+\subsubsection{Optimisation} Since optimisation is key, this section will explore the topic more. Various optimisation techniques can be applied to models to allow efficient operation with the limited computational power and limited memory available on a constrained device. As previously discussed, some optimisation techniques allow for the use of accelerated inference \cite{b13}.
 
 Models should be optimised for a number of reasons. One of the main reasons would be size reduction. There is no single method used for reducing the model size, but no matter the process, there are a number of advantages in doing this:
 
@@ -156,29 +160,20 @@ Models should be optimised for a number of reasons. One of the main reasons woul
 
 Another reason is \textbf{latency reduction}. In the context of EML, latency can be defined as the amount of time taken for the system to process a piece of data and make a decision based on that data. Optimisation can reduce the amount of computation needed to make this decision (or, to put it another way, reduce latency). Lower latency will also have the benefit of reducing power consumption.
 
-Then we have \textbf{accelerators}. One consequence of model optimisation is that it can impact the model's accuracy, and this should be kept in mind during development. TFL offers tools such as Edge TPU, which can run inference extremely fast when using models which have been correctly optimised. Edge TPU is offered by Google, and is a purpose-built ASIC which has been designed specifically to run AI on edge devices, allows for high-quality machine learning inferencing at the edge and is based around the Carol development environment discussed above \cite{google2}.
+Then we have \textbf{accelerators}. One consequence of model optimisation is that it can impact the model's accuracy, and this should be kept in mind during development. TFL offers tools such as Edge TPU, which can run inference extremely fast when using models which have been correctly optimised. Edge TPU is offered by Google, and is a purpose-built ASIC which has been designed specifically to run AI on edge devices, allows for high-quality machine learning inferencing at the edge and is based around the Carol development environment discussed above \cite{b14}.
 
 As discussed, optimisation has the potential to modify the accuracy of the model, and any developer must keep this in mind during the development process. The potential inaccuracies cannot be predicted, so a method of dealing with them cannot be developed and included as part of the TFL suite of tools.
 
-Depending on what works best for a given application, TFL offers a number of optimisation paths: quantisation, pruning, and clustering. The quantisation approach works by reducing the precision of the numbers used to represent the model parameters \cite{tfl2}. By default, these are set to 32-bit floating point numbers. Reducing the precision of the numbers or parameters of the model means that less memory is required, this in turn means an overall smaller model, which will result in faster computation.
+Depending on what works best for a given application, TFL offers a number of optimisation paths: quantisation, pruning, and clustering. The quantisation approach works by reducing the precision of the numbers used to represent the model parameters \cite{b13}. By default, these are set to 32-bit floating point numbers. Reducing the precision of the numbers or parameters of the model means that less memory is required, this in turn means an overall smaller model, which will result in faster computation.
 
-From \cite{tfl1}, we get the following quantisation techniques, and the results:
+From \cite{b12}, we get the quantisation techniques which are, with their benefits are:
 
-\begin{tabular}{||c c c c c||} 
- \hline
- Col1 & Col2 & Col3 & Col4 & Col4 \\ [1.0ex] 
- \hline\hline
- 1 & 6 & 87837 & 787 & e\\ 
- \hline
- 2 & 7 & 78 & 5415 & d \\
- \hline
- 3 & 545 & 778 & 7507 & 552\\
- \hline
- 4 & 545 & 18744 & 7560 & g1 \\
- \hline
- 5 & 88 & 788 & 6344 & 3\\ [1ex] 
- \hline
-\end{tabular}
+\begin{itemize}
+    \item \textbf{Post training float 16 quantisation}: This will offer a size reduction of up to 50 per cent with insignificant accuracy loss. This technique is supported on CPUs and GPUs
+    \item \textbf{Post training dynamic range quantisation}: Will offer up to 75 per cent size reduction with the smallest accuracy loss. This technique will work on CPUs and GPUs (Andriod)
+    \item \textbf{Post training integer quantisation}: This technique will require an unlabelled representative sample and will produce up to 75 per cent size reduction with a small accuracy loss. This technique will work on CPUs and GPUs (Android), EdgeTPU and Hexagon DSPs
+    \item \textbf{Quantisation-aware training}: This technique requires labelled training data, producing a size reduction of up to 75 per cent. It offers the smallest accuract loss and can work on CPUs, GPUs (Android), EdgeTPU, Hexagon DSP
+\end{itemize}
 
 
 Next is pruning. Pruning is an approach which removes parameters within the model which will have only a minor impact on the prediction. A pruned model will take up the same size of memory and will have the same latency, but it can be compressed more efficiently.
@@ -190,17 +185,17 @@ Then finally there is clustering. Clustering works by grouping the weights of ea
 This section of the report will present a review of previous research carried out in the area of embedded machine learning.
 
 \subsection{Literature Review}
-Many articles have been written on the topic of obstacle detection, some of these, such as \cite{obstacle1}, use mobile devices such as smartphones and tablets with in-built cameras, which run algorithms to detect the presence of obstacles. While smartphones and tablets are not the proposed constrained device used in this project, the paper offers interesting insights into the use of a small portable device which is not intrusive. The model presented in this work uses a number of sensors for detecting obstacles. The sensors listed include the onboard camera, proximity sensor, accelerometer, and gyroscope. The researchers in this work use the Canny Edge Detection algorithm \cite{canny}. This algorithm extracts useful information from vision objects and reduces the amount of data this is processed. As such, it is a common algorithm found in the area of computer vision as well as edge detection.
+Many articles have been written on the topic of obstacle detection, some of these, such as \cite{b15}, use mobile devices such as smartphones and tablets with in-built cameras, which run algorithms to detect the presence of obstacles. While smartphones and tablets are not the proposed constrained device used in this project, the paper offers interesting insights into the use of a small portable device which is not intrusive. The model presented in this work uses a number of sensors for detecting obstacles. The sensors listed include the onboard camera, proximity sensor, accelerometer, and gyroscope. The researchers in this work use the Canny Edge Detection algorithm \cite{b16}. This algorithm extracts useful information from vision objects and reduces the amount of data this is processed. As such, it is a common algorithm found in the area of computer vision as well as edge detection.
 
-Other research, such as \cite{sattiraju2018machine} offers insights into how machine learning can be used to carry out Real-Time Ranging and Localisation (RTRL) and discusses a few different approaches to labelling data which are interesting and offer a useful background to the proposed work. They use two different labelling methods – one is a simple multi-class labelling system, and the other is a grid labelling system. This work also discussed the performance of several classification models which was very informative – the authors showed that tree-based models along with Stochastic Gradient Boost performed better than linear models. The paper also discussed which of the labelling methods they investigated showed the best performance. As such, this paper contains a lot of useful information related to the proposed work.
+Other research, such as \cite{b17} offers insights into how machine learning can be used to carry out Real-Time Ranging and Localisation (RTRL) and discusses a few different approaches to labelling data which are interesting and offer a useful background to the proposed work. They use two different labelling methods – one is a simple multi-class labelling system, and the other is a grid labelling system. This work also discussed the performance of several classification models which was very informative – the authors showed that tree-based models along with Stochastic Gradient Boost performed better than linear models. The paper also discussed which of the labelling methods they investigated showed the best performance. As such, this paper contains a lot of useful information related to the proposed work.
 The proposed work’s goal is to access the feasibility of a DL/ML model running on what is a constrained device. 
 
-The work presented in \cite{merenda} offers a discussion on topics like the future of Machine Learning at the edge, as well as a discussion on Machine Learning/Deep Learning algorithms, it also presents a discussion on how Machine Learning can be brought to the edge, discussing architectures and hardware, and wireless standards for Artificial Intelligence-enabled devices. As such, the work in \cite{merenda} provides a wide-ranging and extremely useful background to the topic of Machine Learning and Deep Learning on constrained devices. 
+The work presented in \cite{b18} offers a discussion on topics like the future of Machine Learning at the edge, as well as a discussion on Machine Learning/Deep Learning algorithms, it also presents a discussion on how Machine Learning can be brought to the edge, discussing architectures and hardware, and wireless standards for Artificial Intelligence-enabled devices. As such, the work in \cite{b18} provides a wide-ranging and extremely useful background to the topic of Machine Learning and Deep Learning on constrained devices. 
 
-The work presented in \cite{quinn} used a thermal imaging camera and provides some useful insights into data collection as well as a discussion on the system architecture. The work then goes on to discuss the use of CNNs and highlighted some of the problems encountered when training on the AlexNet network – specifically lighting, which may be an issue for the work proposed here, depending on sensor type, and as such, is something to keep in mind.
+The work presented in \cite{b19} used a thermal imaging camera and provides some useful insights into data collection as well as a discussion on the system architecture. The work then goes on to discuss the use of CNNs and highlighted some of the problems encountered when training on the AlexNet network – specifically lighting, which may be an issue for the work proposed here, depending on sensor type, and as such, is something to keep in mind.
 
 
-Finally, a slightly older paper is presented in \cite{lane}. While this paper is older, it provides a very useful entry point into machine learning at the edge. The work discusses some of the early stages of so-called embeddedML development, looking at work done using smartphones and how non-CPU processors, such as DSPs can play an important role in reducing deep networks to allow them to be used on a constrained device. The paper also discusses methods for overcoming the constraints of an embedded system, which includes a compression model which allows deep neural networks to fit and operate on embedded systems. 
+Finally, a slightly older paper is presented in \cite{b20}. While this paper is older, it provides a very useful entry point into machine learning at the edge. The work discusses some of the early stages of so-called embeddedML development, looking at work done using smartphones and how non-CPU processors, such as DSPs can play an important role in reducing deep networks to allow them to be used on a constrained device. The paper also discusses methods for overcoming the constraints of an embedded system, which includes a compression model which allows deep neural networks to fit and operate on embedded systems. 
 
 \section{System Development}
 This section of the report will present information on the technical work carried out on the research project. It will start with a discussion on the data collection process, followed by a discussion on the initial analysis of that data using classification techniques from the machine learning toolbox. From there a discussion on the development of a neural network will be presented before moving on to examine the deployment of the network onto the constrained device.
@@ -209,7 +204,7 @@ This section of the report will present information on the technical work carrie
 This section of the report will give a brief overview of the data collection process.
 
 A list of potential sensors was examined against a list of criteria, such as cost, accuracy, size, power consumption and so on. Each potential sensor (from LiDAR to ultrasonic sensors to cameras) was scored. This scoring showed that the best sensor, given the constraints of the project, was the ultrasonic sensor. This was teamed with the Arduino Nano 33 BLE sense development kit. The Arduino development kit offers a small, affordable system with its own IDE. The ultrasonic sensor's output can be read using the Arduino's general-purpose input/output (GPIO) pins. It was decided to use two ultrasonic sensors, to allow data collection on two channels. The image in Fig. \ref{fig:collection1} shows a block diagram for an edge AI device:    
-\begin{figure}[h]
+\begin{figure}[ht]
 \includegraphics[width=8.5cm, height=6cm]{images/data_collection_block.png}
 \centering
 \caption{Block Diagram for a Constrained Device}
@@ -278,7 +273,7 @@ The order of the datasets tested is shown in Table \ref{table:2}:
 Using Python the two datasets were brought together into a single \texttt{DataFrame}. The data was then into training and testing datasets using \texttt{train\_test\_split} with a 25 per cent split.
 
 The results of this analysis can be seen in Fig. \ref{fig:init_binary}
-\begin{figure}[h]
+\begin{figure}[ht]
 \includegraphics[width=8cm, height=3cm]{images/initial_binary_search.png}
 \centering
 \caption{Results for the Initial Binary Search}
@@ -317,21 +312,21 @@ The balanced dataset is illustrated in Table \ref{table:3}:
 
 With the balanced dataset in place, the grid analysis could be carried out. This time the response was the grid number, unlike the binary search analysis, where the presence of an object or not was the response. The data was processed through the same models listed above and the results of this analysis can be seen in Fig. \ref{fig:initial_analysis_gridsearch}.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \includegraphics[width=8cm, height=3cm]{images/initial_analysis_gridsearch.png}
 \centering
 \caption{Results for the Initial Binary Search}
 \label{fig:initial_analysis_gridsearch}
 \end{figure}
 
-We can see from this analysis that once again, the Decision Tree Classifier and the K-Nearest Neighbour algorithms produce 100 per cent accuracy.  The LDA algorithm produces some of the lowest accuracy figures. However, the majority of the results are over 90 per cent. As with the binary analysis, it can be seen that the results for the train and test datasets are the same for each object. This will require further investigation.
+We can see from this analysis that once again, the Decision Tree Classifier and the K-Nearest Neighbour algorithms produce 100\% accuracy.  The LDA algorithm produces some of the lowest accuracy figures. However, the majority of the results are over 90 per cent. As with the binary analysis, it can be seen that the results for the train and test datasets are the same for each object. This will require further investigation.
 
 \subsection{Using Unseen Data}
 One possible explanation for the identical accuracy of the training and testing data could be that the data used for both sets are very similar. This is because the measurement system and the object being detected are static throughout the data collection process. 
 
 To test this idea, and to look for more representative results, the algorithms will be trained on datasets from three objects, and tested on data from one object, which it has not "seen". This analysis was done for both the binary analysis and the grid analysis. The results can be seen in Fig \ref{fig:new_data_results},
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \includegraphics[width=8cm, height=7cm]{images/new_data_results.png}
 \centering
 \caption{Results for the Initial Binary Search}
@@ -345,18 +340,27 @@ This analysis indicates that the standard classification models, using default s
 \subsection{Neural Networks}
 Using neural networks offers a number of advantages. Neural networks can be used to learn more complex relationships, they are very well suited to classification tasks, and since they are good at learning the underlying relationships in the data, they are good with data that is not cleaned and prepared. A number of frameworks are available when working with neural networks. This work will use the Keras framework.
 
+Building a neural network is an iterative task: the designer will choose the metrics they wish to examine. These could include:
+
+\begin{itemize}
+    \item \textbf{Accuracy}: A measure of the number of correctly classified samples from the total examples in the dataset
+    \item \textbf{Precision}: A measure of the true positives (i.e. correctly identified positive samples) out of all the samples which a model has identified as positive
+    \item \textbf{Recall}: A measure of the number of true positives present in all positive samples
+    \item \textbf{F1 Score}: The F1-score sums up the predictive performance of a model using the precision and recall values
+    \item \textbf{AUC}: The Area Under the Curve is the measure of the separability, or, to put it another way, it is the measure of how well a model can distinguish between classes.
+\end{itemize}
+
 Working with neural networks requires more work due to the need to decide on the number of layers, the number of neurons, the activation function and so on. During the neural network investigation, a number of parameters were investigated, such as using the Model and Sequential class as well as the rmsprop, Adam and SGD optimisers. The loss parameter investigated was the Sparse categorical cross-entropy, as well as the mean squared error loss. The number of epochs was varied as well at the batch size. Some investigation of the learning rate was carried out to understand the impact that can have on the accuracy. 
 
 This investigation found that, for the grid analysis, the following parameters shown in Fig \ref{fig:nn_settings}, produced the best results
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \includegraphics[width=8cm, height=1cm]{images/nn_settings.png}
 \centering
 \caption{Optimal Setting for Neural Network}
 \label{fig:nn_settings}
 \end{figure}
 
-\textcolor{red}{This network has 3 Dense layers, with }
 
 
 \subsection{System Algorithm}
@@ -375,8 +379,30 @@ One of the constraints of an embedded device, as previously mentioned, is power,
 % \section*{Acknowledgment}
 
 
-%\section*{References}
-\printbibliography
+\section*{References}
+\begin{thebibliography}{00}
+\bibitem{b1} RNIB, "Key stats about sight loss 2021," 2021. [Online]. Available: $https://media.rnib.org.uk/documents/Key_stats_about_sight_loss_2021.pdf.$ [Accessed 3 2 2023].
+\bibitem{b2} L. Pezzullo, J. Streatfeild, P. Simkiss and D. Shickle, "The economic impact of sight loss and blindness in the UK adult population," BMC Health Services Research, vol. 18, 2018. 
+\bibitem{b3} Business Wire, "Global Microcontroller Market Size, Share \& Trends Analysis Report 2021-2028 - ResearchAndMarkets.com," 2021. [Online]. Available: \url{https://tinyurl.com/bdcpkuybm}. [Accessed 2 3 2023].
+\bibitem{b4} D. Situnayake and J. Plunkett, AI at the Edge, O'Reilly Media, Inc., 2023. 
+\bibitem{b5} Google, "Carol," 2021. [Online]. Available: \url{https://coral.ai/docs/som/datasheet/}. [Accessed 13 4 2023].
+\bibitem{b6} NVIDIA, "Jetson nano Development Kit," [Online]. Available: $https://developer.nvidia.com/embedded/jetson-nano-developer-kit$. [Accessed 12 4 2023].
+\bibitem{b7} NVIDIA, "Jetson nano Development Kit User Guide," [Online]. Available: \url{https://developer.nvidia.com/embedded/dlc/Jetson_Nano_Developer_Kit_User_Guide}. [Accessed 12 4 2023].
+\bibitem{b8} beaglebone.org, "Beaglebone AI 64," [Online]. Available: \url{https://beagleboard.org/AI}. [Accessed 12 4 23].
+\bibitem{b9} T. Sipola, J. Alatalo, T. Kokkonen and M. Rantonen, "Artificial Intelligence in the IoT Era: A Review of Edge AI Hardware and Software," 2022 31st Conference of Open Innovations Association (FRUCT), Helsinki, Finland, 2022, pp. 320-331, doi: 10.23919/FRUCT54823.2022.9770931.
+\bibitem{b10} Arduino, "Arduino Nano BLE 33 Sense" [Online]. Available: \url{https://store-usa.arduino.cc/products/arduino-nano-33-ble-sense}. [Accessed 23 4 23].
+\bibitem{b11} Qualcomm, "AI is transforming everything. We are making AI ubiquitous," [Online]. Available: \url{https://www.qualcomm.com/research/artificial-intelligence}. [Accessed 12 4 23].
+\bibitem{b12} TensorFlow Lite Org., "TensorFlow Lite" [Online]. Available: \url{https://www.tensorflow.org/lite/guide}. [Accessed 14 4 2023].
+\bibitem{b13} TensorFlow Lite Org., "TensorFlow Lite" [Online]. Available: \url{https://www.tensorflow.org/model_optimization}. [Accessed 14 4 2023].
+\bibitem{b14} TensorFlow Lite Org., "Internet of Things - Edge TPU" [Online]. Available: \url{https://cloud.google.com/edge-tpu/}. [Accessed 16 4 2023].
+\bibitem{b15} K. A. B. Za’aba and L. B. Theng, "Edge Based Obstacle Detection Model Focused on Indoor Floor-Based Obstacles," 2019 IEEE 9th Symposium on Computer Applications \& Industrial Electronics (ISCAIE), Malaysia, 2019, pp. 202-207, doi: 10.1109/ISCAIE.2019.8743866.
+\bibitem{b16} J. Canny, "A Computational Approach to Edge Detection," in IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. PAMI-8, no. 6, pp. 679-698, Nov. 1986, doi: 10.1109/TPAMI.1986.4767851.
+\bibitem{b17} R. Sattiraju, J. Kochems and H. D. Schotten, "Machine learning based obstacle detection for Automatic Train Pairing," 2017 IEEE 13th International Workshop on Factory Communication Systems (WFCS), Trondheim, Norway, 2017, pp. 1-4, doi: 10.1109/WFCS.2017.7991962.
+\bibitem{b18} M. Merenda, C. Porcaro, and D. Iero, “Edge Machine Learning for AI-Enabled IoT Devices: A Review,” Sensors, vol. 20, no. 9, p. 2533, Apr. 2020, doi: 10.3390/s20092533
+\bibitem{b19} S. Quinn et al., "A Thermal Imaging Solution for Early Detection of Pre-ulcerative Diabetic Hotspots," 2019 41st Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC), Berlin, Germany, 2019, pp. 1737-1740, doi: 10.1109/EMBC.2019.8856900.
+\bibitem{b20} N. D. Lane, S. Bhattacharya, A. Mathur, P. Georgiev, C. Forlivesi and F. Kawsar, "Squeezing Deep Learning into Mobile and Embedded Devices," in IEEE Pervasive Computing, vol. 16, no. 3, pp. 82-88, 2017, doi: 10.1109/MPRV.2017.2940968.
+\end{thebibliography}
+% \printbibliography
 \vspace{12pt}
 
 \end{document}
