@@ -30,7 +30,7 @@
 
 \begin{document}
 
-\title{MSc Research Report\\}
+\title{An Embedded Machine Learning Approach to Assist Navigation for People with Visual Impairments\\}
 
 \author{
 \IEEEauthorblockN{Seán Ó Fithcheallaigh (B00830189)}
@@ -54,38 +54,41 @@ Machine Learning, Deep Learning, Embedded Systems, The Edge, Neural Networks, Ar
 \end{IEEEkeywords}
 
 \section{Introduction}
-This project is related to the testing and development of an obstacle avoidance and navigation system for people with sight difficulties. The initial part of this section will give background information on why systems like this are needed, and will then move into a more detailed exploration of the project.
+% This research is related to the testing and development of an obstacle avoidance and navigation system for people with sight difficulties. The initial part of this section will give background information on why systems like this are needed, and will then move into a more detailed exploration of the research.
 \subsection{The lives of people dealing with sight loss}
-There are over two million people in the UK who are living with sight loss; where sight loss includes: people who are registered blind or partially sighted; people whose vision is better than the levels that qualify for registration; people who are awaiting or having treatment such as injections, laser treatment or surgery that may improve their sight; Correctly prescribed glasses or contact lenses could improve the sight of people who have sight loss \cite{b1}. Experts also predict that the number of people suffering from sight loss will double to over four million by 2050 \cite{b2}.
+There are over two million people in the UK who live with sight loss; where sight loss includes: people who are registered blind or partially sighted; people whose vision is better than the levels that qualify for registration; people who are awaiting or having treatment such as injections, laser treatment or surgery that may improve their sight; Correctly prescribed glasses or contact lenses could improve the sight of people who have sight loss \cite{b1}. Experts also predict that the number of people suffering from sight loss will double to over four million by 2050 \cite{b2}. The main reason for sight loss includes age-related macular degeneration (AMD), uncorrected refractive errors and cataracts \cite{b1}. 
 
-Of the two million people with sight loss, the leading causes of sight loss include (with the approximate number of people affected) \cite{b1}:
-\begin{itemize}
-    \item Age-related macular degeneration (AMD) (488,000 people)
-    \item Cataract (394,000 people)
-    \item Diabetic retinopathy (97,000 people)
-    \item Glaucoma (151,000 people)
-    \item Uncorrected refractive error (809,000 people)
-    \item Other eye problems (150,000 people)
-\end{itemize}
+%Of the two million people with sight loss, the leading causes of sight loss include (with the approximate number of people affected) \cite{b1}:
+%\begin{itemize}
+    %\item Age-related macular degeneration (AMD) (488,000 people)
+    %\item Cataract (394,000 people)
+    %\item Diabetic retinopathy (97,000 people)
+    %\item Glaucoma (151,000 people)
+    %\item Uncorrected refractive error (809,000 people)
+    %\item Other eye problems (150,000 people)
+%\end{itemize}
 
+The impact of sight loss on individuals can differ based on their personal situations. Nevertheless, in the UK, many people acknowledge that individuals with visual impairments are not treated equally to those without. \cite{b1}.
 
-How sight loss impacts those effects can vary, depending on personal circumstances. Some factors which can be influential in a person's experience with sight loss can be: they receive support and receive it at the right time, a person's age, the presence of other disabilities, and the severity of the sight loss. However, most people in the UK agree that those with visual impairments are not treated the same as those without visual impairments, according to a key finding in \cite{b1}.
+% How sight loss impacts those effects can vary, depending on personal circumstances. Some factors which can be influential in a person's experience with sight loss can be: they receive support and receive it at the right time, a person's age, the presence of other disabilities, and the severity of the sight loss. However, most people in the UK agree that those with visual impairments are not treated the same as those without visual impairments, according to a key finding in \cite{b1}.
 
-People with visual impairments are less likely to go into an environment with which they are not familiar. As a result, visual impairments can have a negative impact on their health and well-being. Obstacle detection and warning can improve the mobility and safety of visually impaired people, particularly in unfamiliar environments; as one RNIB research participant said, "If there were more things in shops to help people with sight loss [...] to help us get around" \cite{b1} \cite{b2}. However, if we look around our world, we can see that transport systems are not built with the visually impaired in mind [3]. This fact is one factor likely to be a factor in four out of every ten blind people who are only able to make some of the journeys they either need to or wanted to \cite{b1}.
+% Individuals who have visual impairments tend to avoid unfamiliar environments, which can have adverse effects on their overall health and wellness. Obstacle detection and warning can improve the mobility and safety of visually impaired people, particularly in unfamiliar environments; as one RNIB research participant said, "If there were more things in shops to help people with sight loss [...] to help us get around" \cite{b1} \cite{b2}. However, if we look around our world, we can see that transport systems are not built with the visually impaired in mind [3]. This fact is one factor likely to be a factor in four out of every ten blind people who are only able to make some of the journeys they either need to or wanted to \cite{b1}.
 
-Visually impaired people face many issues when navigating their journey, such as understanding how to reach their destination. Typically, the route to a destination will stay the same - streets remain in the same place, and road crossings tend not to move. However, another issue they face is random obstacles placed in their path. These are things that a visually impaired person could have no way to know is there. Of course, items such as the white cane some blind people use can assist with this kind of issue. However, not everyone may want to use a cane (potentially because of the signal that sends: I am different, I have an impairment), and potentially because, if registered as blind, many people still have some level of vision and do not wish to give up a level of independence completely. 
+Individuals who have visual impairments tend to avoid unfamiliar environments, which can have adverse effects on their overall health and wellness. Obstacle detection and warning can improve the mobility and safety of visually impaired people, particularly in unfamiliar environments, which can help facilitate the journeys they need to do. However, transport systems are not built with the visually impaired in mind \cite{b2}. It is likely that this contributes to the limitation of four out of every ten blind individuals who can only complete some of the journeys they require or desire. \cite{b1}.
+
+Visually impaired people face many issues when navigating their journey, such as understanding how to reach their destination. Typically, the route to a destination will stay the same - streets remain in the same place, and road crossings tend not to move. However, another issue they face is random obstacles placed in their path. These are things that a visually impaired person could have no way of knowing are there. Of course, aids such as the white cane can be used to assist with this kind of issue. However, not everyone may want to use a cane (potentially because of the signal that sends: I am different, I have an impairment). Another reason could be because, although a person may be registered as blind, they may still have some level of vision (as many do) and do not wish to give up a level of independence completely. 
 
 \subsection{The Problem}
 A need exists to develop systems that can assist visually impaired people in navigating their surroundings. In any proposed navigation system for the visually impaired, obstacles must first be detected and localised. Then, navigation information must be communicated to the person, allowing them to avoid obstacles. Using various modalities such as voice, tactile feedback, and vibration could facilitate the achievement of this goal.
  
-This project proposes using machine learning (ML) methods within an embedded system to develop a solution that can detect obstacles in the path of a visually impaired user navigating an indoor environment. 
+This research proposes using machine learning (ML) methods within an embedded system to develop a solution that can detect obstacles in the path of a visually impaired user navigating an indoor environment. 
  
 Several tasks will need to be completed to determine the system's feasibility. The first step will be the investigation of various sensor modalities in order to determine the most appropriate sensor or combination of sensors. Then a dataset will be gathered covering a range of obstacle detection and avoidance scenarios. This dataset will then be used to train, test, and validate several Deep Learning (DL) and ML models to understand which is best at detecting and localising obstacles. Development work will then be done to allow this model to be implemented on a constrained device, and the performance of the final model will be assessed against critical parameters.
 This paper will detail this work by covering the main steps listed above. 
 
 \section{Technical Review}
 \subsection{Introduction}
-This section of the report will present a background discussion on the technical aspects of this project. 
+This section of the article will present a background discussion on the technical aspects related to the research. 
 
 As has been discussed, the goal is to design and build an object detection system which researchers can implement on a constrained device. This detection system will operate at what is called "the edge". This section of the report will start with a discussion of what is meant by the edge, covering the advantages and disadvantages of working at the edge and the hardware and software considerations required. 
 
@@ -185,7 +188,7 @@ Then finally there is clustering. Clustering works by grouping the weights of ea
 This section of the report will present a review of previous research carried out in the area of embedded machine learning.
 
 \subsection{Literature Review}
-Many articles have been written on the topic of obstacle detection, some of these, such as \cite{b15}, use mobile devices such as smartphones and tablets with in-built cameras, which run algorithms to detect the presence of obstacles. While smartphones and tablets are not the proposed constrained device used in this project, the paper offers interesting insights into the use of a small portable device which is not intrusive. The model presented in this work uses a number of sensors for detecting obstacles. The sensors listed include the onboard camera, proximity sensor, accelerometer, and gyroscope. The researchers in this work use the Canny Edge Detection algorithm \cite{b16}. This algorithm extracts useful information from vision objects and reduces the amount of data this is processed. As such, it is a common algorithm found in the area of computer vision as well as edge detection.
+Many articles have been written on the topic of obstacle detection, some of these, such as \cite{b15}, use mobile devices such as smartphones and tablets with in-built cameras, which run algorithms to detect the presence of obstacles. While smartphones and tablets are not the proposed constrained device used in this research, the paper offers interesting insights into the use of a small portable device which is not intrusive. The model presented in this work uses a number of sensors for detecting obstacles. The sensors listed include the onboard camera, proximity sensor, accelerometer, and gyroscope. The researchers in this work use the Canny Edge Detection algorithm \cite{b16}. This algorithm extracts useful information from vision objects and reduces the amount of data this is processed. As such, it is a common algorithm found in the area of computer vision as well as edge detection.
 
 Other research, such as \cite{b17} offers insights into how machine learning can be used to carry out Real-Time Ranging and Localisation (RTRL) and discusses a few different approaches to labelling data which are interesting and offer a useful background to the proposed work. They use two different labelling methods – one is a simple multi-class labelling system, and the other is a grid labelling system. This work also discussed the performance of several classification models which was very informative – the authors showed that tree-based models along with Stochastic Gradient Boost performed better than linear models. The paper also discussed which of the labelling methods they investigated showed the best performance. As such, this paper contains a lot of useful information related to the proposed work.
 The proposed work’s goal is to access the feasibility of a DL/ML model running on what is a constrained device. 
@@ -203,7 +206,7 @@ This section of the report will present information on the technical work carrie
 \subsection{Data Collection}
 This section of the report will give a brief overview of the data collection process.
 
-A list of potential sensors was examined against a list of criteria, such as cost, accuracy, size, power consumption and so on. Each potential sensor (from LiDAR to ultrasonic sensors to cameras) was scored. This scoring showed that the best sensor, given the constraints of the project, was the ultrasonic sensor. This was teamed with the Arduino Nano 33 BLE sense development kit. The Arduino development kit offers a small, affordable system with its own IDE. The ultrasonic sensor's output can be read using the Arduino's general-purpose input/output (GPIO) pins. It was decided to use two ultrasonic sensors, to allow data collection on two channels. The image in Fig. \ref{fig:collection1} shows a block diagram for an edge AI device:    
+A list of potential sensors was examined against a list of criteria, such as cost, accuracy, size, power consumption and so on. Each potential sensor (from LiDAR to ultrasonic sensors to cameras) was scored. This scoring showed that the best sensor, given the constraints of the research, was the ultrasonic sensor. This was teamed with the Arduino Nano 33 BLE sense development kit. The Arduino development kit offers a small, affordable system with its own IDE. The ultrasonic sensor's output can be read using the Arduino's general-purpose input/output (GPIO) pins. It was decided to use two ultrasonic sensors, to allow data collection on two channels. The image in Fig. \ref{fig:collection1} shows a block diagram for an edge AI device:    
 \begin{figure}[ht]
 \includegraphics[width=8.5cm, height=6cm]{images/data_collection_block.png}
 \centering
